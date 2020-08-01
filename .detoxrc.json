@@ -9,6 +9,14 @@
       "device": {
         "type": "iPhone 11 Pro"
       }
+    },
+    "ios.sim.release": {
+      "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/detok.app",
+      "build": "xcodebuild -workspace ios/detok.xcworkspace -scheme detok -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+      "type": "ios.simulator",
+      "device": {
+        "type": "iPhone 11 Pro"
+      }
     }
   }
 }

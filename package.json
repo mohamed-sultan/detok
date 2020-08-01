@@ -27,6 +27,10 @@
     "react-test-renderer": "16.13.1"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/e2e" 
+    ]
   }
 }
