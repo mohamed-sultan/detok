@@ -14,7 +14,10 @@ import {
   View,
   Text,
   StatusBar,
-  TouchableOpacity
+  TouchableOpacity,
+  TextInput,
+  Button,
+  FlatList,
 } from 'react-native';
 
 import {
@@ -25,17 +28,43 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import TestIds from './src/utils/testIds'
+import TestIds from './src/utils/testIds';
 
 const App = () => {
+  const [active, setActive] = React.useState(true);
+  const [counter, setCounter] = React.useState(0);
+
   return (
     <View>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView testID={TestIds.welcome} >
-        
-        <TouchableOpacity testID={TestIds.fakeButton} onPress={()=>alert('nice')} >
-          <Text>nice</Text>
+      <SafeAreaView testID={TestIds.welcome}>
+        <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          <TouchableOpacity
+            testID={TestIds.fakeButton}
+            onPress={() => setActive(!active)}>
+            <Text testID={TestIds.buttonText}>
+              {active ? TestIds.buttonTextOk : TestIds.buttonTextNotOk}
+            </Text>
           </TouchableOpacity>
+          <TextInput returnKeyType="done" testID={TestIds.textInput} />
+          <Text testID='fuck'>{counter}</Text>
+          <Button
+            testID={TestIds.counterButton}
+            title="coun up"
+            onPress={() => setCounter(counter + 1)}
+          />
+         
+          <FlatList
+            style={{height: 100, backgroundColor: 'sky',marginVertical:10,width:'100%'}}
+            
+            testID={TestIds.flatList}
+            data={['zamalek', 'ahly', 'masry', 'isamily']}
+            keyExtractor={(item) => String(item)}
+            renderItem={({item, index}) => (
+              <Text style={styles.flatListItem}>{item}</Text>
+            )}
+          />
+        </View>
       </SafeAreaView>
     </View>
   );
@@ -77,6 +106,10 @@ const styles = StyleSheet.create({
     padding: 4,
     paddingRight: 12,
     textAlign: 'right',
+  },
+  flatListItem: {
+    textAlign: 'center',
+    height: 100,
   },
 });
 
